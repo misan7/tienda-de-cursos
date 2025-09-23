@@ -29,7 +29,18 @@ function eliminarCurso(e) {
   if (e.target.classList.contains("borrar-curso")) {
     const cursoId = e.target.getAttribute("data-id");
 
-    articulosCarrito = articulosCarrito.filter((curso) => curso.id !== cursoId);
+    articulosCarrito = articulosCarrito
+      .map((curso) => {
+        if (curso.id === cursoId) {
+          if (curso.cantidad > 1) {
+            return { ...curso, cantidad: curso.cantidad - 1 };
+          } else {
+            return null;
+          }
+        }
+        return curso;
+      })
+      .filter((curso) => curso !== null); // Elimina los que quedaron en null
 
     carritoHTML();
   }
