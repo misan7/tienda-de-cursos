@@ -9,6 +9,11 @@ function cargarEventListeners() {
   listaCursos.addEventListener("click", agregarCurso);
 
   carrito.addEventListener("click", eliminarCurso);
+
+  vaciarCarrito.addEventListener("click", () => {
+    articulosCarrito = [];
+    limpiarHTML();
+  });
 }
 
 function agregarCurso(e) {
